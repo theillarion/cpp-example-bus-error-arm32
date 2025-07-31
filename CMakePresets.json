@@ -1,0 +1,49 @@
+{
+	"version": 6,
+	"cmakeMinimumRequired": {
+		"major": 3,
+		"minor": 28,
+		"patch": 0
+	},
+	"configurePresets": [
+		{
+			"name": "armv7hf_base",
+			"hidden": true,
+			"generator": "Ninja",
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"toolchainFile": "${sourceDir}/toolchain/arm_gcc.cmake",
+			"cacheVariables": {
+				"CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+				"CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/out"
+			}
+		},
+		{
+			"name": "armv7hf_debug",
+			"displayName": "Cross(ARM) GCC Debug",
+			"inherits": "armv7hf_base",
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+		{
+			"name": "armv7hf_release",
+			"displayName": "Cross(ARM) GCC Release",
+			"inherits": "armv7hf_base",
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		}
+	],
+	"buildPresets": [
+		{
+			"name": "armv7hf_debug",
+			"configurePreset": "armv7hf_debug",
+			"jobs": 32
+		},
+		{
+			"name": "armv7hf_release",
+			"configurePreset": "armv7hf_release",
+			"jobs": 32
+		}
+	]
+}
