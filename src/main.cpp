@@ -35,7 +35,7 @@ struct ParameterData
     Attributes attributes{};            // Parameter attributes
     uint16_t objnum{0};                 // Parameter number
     uint8_t dummy[PADDING_SIZE]{};      // Padding
-} packed_struct; // 10 byte
+} packed_struct; // (9 + PADDING_SIZE) byte
 
 inline uint64_t GetDefaultValue(const std::uint64_t* defaults, const ParameterData& info)
 {
